@@ -8,7 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "prettier": "prettier src/**/*.{js,vue,ts} public/*.html --write"
+    "prettier": "prettier src/**/*.{js,vue,ts} public/*.html tests/**/*.ts --write"
   },
   "dependencies": {
     "core-js": "^3.4.4",
