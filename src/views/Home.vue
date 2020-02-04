@@ -8,9 +8,9 @@
 <script lang="ts">
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
-import { Component } from 'vue';
 
-export const Home: Component = {
+// TODO: 型をもたせたい → vue-property-decorator?
+export const Home = {
   name: 'home',
   components: {
     HelloWorld,

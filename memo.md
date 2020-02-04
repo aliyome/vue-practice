@@ -2,8 +2,26 @@
 
 ## TODO
 
-- router-link とは
-- router-view とは
+- [ ] router-link とは
+- [ ] router-view とは
+- [ ] `vue-property-decorator`とは
+  - [ ] Home コンポーネントに型をもたせたい
+
+## 覚書
+
+prettier の html フォーマッタが邪魔なときに以下のワークスペース設定を行う
+
+```json
+{
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}
+```
+
+## コンポーネント
+
+- `<style scoped>`とすると、コンポーネント内のみ有効なスタイルとなる
 
 ## Router
 
