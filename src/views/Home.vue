@@ -5,14 +5,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
+import { Component } from 'vue';
 
-export default {
+export const Home: Component = {
   name: 'home',
   components: {
     HelloWorld,
   },
 };
+
+export default Home;
 </script>
