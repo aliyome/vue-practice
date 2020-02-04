@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <button @click="clk">break $router</button>
   </div>
 </template>
 
@@ -12,8 +13,21 @@ import HelloWorld from '@/components/HelloWorld.vue';
 // TODO: 型をもたせたい → vue-property-decorator?
 export const Home = {
   name: 'home',
+
+  props: ['id', 'p'],
+
   components: {
     HelloWorld,
+  },
+
+  beforeRouteUpdate(to: any, from: any, next: any) {
+    console.warn(to, from, next);
+  },
+
+  methods: {
+    clk() {
+      // console.log(this.$route);
+    },
   },
 };
 

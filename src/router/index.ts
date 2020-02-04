@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import About from '../views/About.vue';
 
 Vue.use(VueRouter);
 
@@ -8,6 +9,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    props: true,
+    components: {
+      default: Home,
+      sub: About,
+    },
+  },
+  {
+    path: '/foo/:id',
+    name: 'foo',
+    // props: { p: 'fooooo' },
+    props: (route: any) => ({ id: route.params.id, p: '2' }),
     component: Home,
   },
   {

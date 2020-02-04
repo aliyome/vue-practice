@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
+    <router-view name="sub" />
   </div>
 </template>
 
@@ -30,3 +31,17 @@
   }
 }
 </style>
+
+<script lang="ts">
+export default {
+  beforeRouteUpdate(to: any, from: any, next: any) {
+    console.warn(to, from, next);
+    next();
+  },
+  // watch: {
+  //   $route(to: any, from: any) {
+  //     console.log(to, from);
+  //   },
+  // },
+};
+</script>

@@ -2,10 +2,11 @@
 
 ## TODO
 
-- [ ] router-link とは
-- [ ] router-view とは
 - [ ] `vue-property-decorator`とは
   - [ ] Home コンポーネントに型をもたせたい
+- [ ] HelloWorld コンポーネントの @Prop() msg!は指定されないと undefined になるのでクソでは？
+- [ ] shallowMount とは
+- [ ] Vuex を雑に使ってみる
 
 ## 覚書
 
@@ -21,12 +22,25 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 
 ## コンポーネント
 
-- `<style scoped>`とすると、コンポーネント内のみ有効なスタイルとなる
+- `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
 
 ## Router
 
+- [x] router-link とは
+- [x] router-view とは
+- [ ] Vue.use(VueRouter)とは
+- [ ] beforeRouteUpdate ナビゲーションガード
+- [ ] ナビゲーションガードと`onComplete, onAbort`の関係
+- [ ] redirect は push か replace か
 - `Vue.use(VueRouter)`
 - `new VueRouter({routes:[{path, name, component}]})`
+- `<router-link to="path/to/dest"></router-link>`
+- `this.$router.go(-1) // 一つ戻る`
+- `router.push({path: 'hoge', params: {}})` path を指定すると params は無視されるので name を使う
+- `router.replace`は push と異なり、history を上書きする
+  - テンプレート上で`<router-link to="" replace>`とすることでも実装可能
+- `{path: 'hoge', props: true}`とすると、コンポーネントに**パスパラメータを props として渡せる**
+- `{path: 'hoge', props: {foo: 'bar'}}`とすると、コンポーネントに**任意のパラメータを props として渡せる**
 
 ## おやっと思ったこと
 
