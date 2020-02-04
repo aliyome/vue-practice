@@ -26,11 +26,7 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 
 ## Router
 
-- [x] router-link とは
-- [x] router-view とは
-- [x] beforeRouteUpdate ナビゲーションガード
-- [ ] ナビゲーションガードと`onComplete, onAbort`の関係
-- [ ] redirect は push か replace か
+- redirect は replace か
 - `Vue.use(VueRouter)` でグローバルな Vue オブジェクト VueRouter をインストール
 - `new VueRouter({routes:[{path, name, component}]})`
 - `<router-link to="path/to/dest"></router-link>`

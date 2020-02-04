@@ -7,6 +7,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/unko',
+    redirect: '/about',
+  },
+  {
     path: '/',
     name: 'home',
     props: true,
