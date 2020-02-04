@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <button @click="clk">break $router</button>
+    <router-view />
   </div>
 </template>
 
@@ -26,6 +27,7 @@ export const Home = {
 
   methods: {
     clk() {
+      this.$router.push('/', console.log, console.error);
       // console.log(this.$route);
     },
   },

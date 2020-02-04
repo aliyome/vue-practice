@@ -21,6 +21,7 @@ const routes = [
     // props: { p: 'fooooo' },
     props: (route: any) => ({ id: route.params.id, p: '2' }),
     component: Home,
+    meta: { requiredAuth: true },
   },
   {
     path: '/about',
@@ -37,6 +38,16 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+// router.beforeEach((to, from, next) => {
+//   console.log(to, from);
+//   next(false);
+// });
+router.beforeResolve((to, from, next) => {
+  // console.log(to, from);
+  console.log(to.matched.some(record => record.meta.requiredAuth));
+  next();
 });
 
 export default router;
