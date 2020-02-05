@@ -26,6 +26,7 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - [ ] トランジション
 - [ ] `v-for` トランジション は自動的に使えるらしい
 - [ ] `v-once` 要素の子要素はリアクティブ？
+- [ ] `vue-property-decorator`で型のバリデーションはどうやる？
 
 - `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
 - コンポーネントのインスタンスが生成されたタイミングで data に存在していたプロパティのみリアクティブ
@@ -50,6 +51,22 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - `<input v-model.lazy="val">`: 入力後にフォーカスが外れたタイミングでモデルに反映
 - `<input v-model.number="num">`: モデルに反映する直前に parseFloat() される
 - `<input v-model.trim="text">`: モデルに反映する直前に trim() される
+- [グローバルコンポーネントを一括登録する便利な方法(require.context)](https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js)
+- props を型検査する: `props: { title: String, num: Number }`など
+- `props:['p'], data() { return { local: this.p }}`: props の値を data の初期値にできるが、あくまで初期値なので、props の値と連動はしない
+- [イベント名は常にケバブケースを使ったほうが良い](https://jp.vuejs.org/v2/guide/components-custom-events.html#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%90%8D)
+- `<slot> fallback </slot>`: slot に何も指定されなかったら fallback が表示される
+- `<template v-slot:hoge>`　＝　`<template #hoge>`
+
+```html
+<!-- slot側のデータを親コンポーネント側から参照する -->
+<!-- child: 子コンポーネント側 -->
+<slot :innerHoge="innerHoge">{{innerHoge}}</slot>
+<!-- parent: 親コンポーネント側 -->
+<child>
+  <template v-slot:default="t">{{t.innerHoge}}</template>
+</child>
+```
 
 覚書
 
@@ -72,7 +89,19 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 </select>
 ```
 
-`v-model`バインド可能なカスタムコンポーネントの作り方
+- [`v-model`バインド可能なカスタムコンポーネントの作り方](https://jp.vuejs.org/v2/guide/components-custom-events.html#v-model-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA)
+- **ネイティブイベントが必要になったら、このリファレンスをチェックする**
+  - [コンポーネントにネイティブイベントをバインディング](https://jp.vuejs.org/v2/guide/components-custom-events.html#%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AB%E3%83%8D%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%92%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0)
+
+```html
+<!-- this.$emit('update:title', newTitle) -->
+<text-document
+  v-bind:title="doc.title"
+  v-on:update:title="doc.title = $event"
+></text-document>
+<!-- このパターンを .sync 修飾子で短く書くことができます： -->
+<text-document v-bind:title.sync="doc.title"></text-document>
+```
 
 ```ts
 // カスタムコンポーネント

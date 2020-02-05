@@ -1,12 +1,13 @@
 <template>
   <div class="hello">
-    <slot />
+    <slot :bar="bar">{{ bar }}</slot>
     <input
       :value="value"
       type="text"
       @input="$emit('input', $event.target.value)"
     />
     <button @click="$emit('bbbb', 'fooo')">ぼたん！</button>
+    <button @click="ddd.a = 100">dddの変更</button>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,
@@ -148,6 +149,15 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
   @Prop() private value!: string;
+  @Prop() private ddd!: { a: number; b: number };
+  @Prop() private num!: number;
+
+  data() {
+    return {
+      hoge: this.ddd,
+      bar: 'barrrrrrrrrr',
+    };
+  }
 }
 </script>
 
