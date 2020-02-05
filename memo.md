@@ -23,10 +23,9 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 
 ## コンポーネント
 
-- [ ] トランジション
-- [ ] `v-for` トランジション は自動的に使えるらしい
 - [ ] `v-once` 要素の子要素はリアクティブ？
 - [ ] `vue-property-decorator`で型のバリデーションはどうやる？
+- [ ] 関数型コンポーネントとは？
 
 - `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
 - コンポーネントのインスタンスが生成されたタイミングで data に存在していたプロパティのみリアクティブ
@@ -119,6 +118,15 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 <!-- テンプレート -->
 <hoge v-model="aaa" />
 ```
+
+トランジション
+
+- [6 つのクラスが適用される](https://jp.vuejs.org/v2/guide/transitions.html#%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AF%E3%83%A9%E3%82%B9)
+  - 初期描画時のみ適用される`appear`と JavaScript フックもある。
+- enter-class, enter-to-class などの属性で、トランジションタイミングにクラスを付け替えできる（Animate.css などを便利に使える）
+- [befor-enter など、トランジション前後に JavaScript フックが用意されている](https://jp.vuejs.org/v2/guide/transitions.html#JavaScript-%E3%83%95%E3%83%83%E3%82%AF)
+- `<transition mode="out-in>"`を指定することで、要素を切り替えるような場合に消失のトランジション後に生成のトランジションを動かすことができる
+- slot を持つ transition 要素をコンポーネント化すると、トランジションを使い回せる
 
 ## Router
 
