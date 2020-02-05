@@ -124,11 +124,11 @@ export default {
     next();
   },
 
-  computed: {
-    animatedNumber() {
-      return this.$data.numDisp.toFixed(0);
-    },
-  },
+  // computed: {
+  //   animatedNumber: function() {
+  //     return this.$data.numDisp.toFixed(0);
+  //   },
+  // },
 
   methods: {
     clicked(ev: string) {
@@ -141,12 +141,12 @@ export default {
   //   },
   // },
 
-  watch: {
-    num(newValue) {
-      console.log(this.numDisp, newValue);
-      gsap.to(this.$data, { duration: 1, numDisp: newValue });
-      // this.numDisp = gsap.to(this.$data, { duration: 1, x: newValue });
-    },
-  },
+  // watch: {
+  //   num(newValue: any) {
+  //     console.log(this.numDisp, newValue);
+  //     gsap.to(this.$data, { duration: 1, numDisp: newValue });
+  //     // this.numDisp = gsap.to(this.$data, { duration: 1, x: newValue });
+  //   },
+  // },
 };
 </script>
