@@ -73,6 +73,21 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 </select>
 ```
 
+`v-model`バインド可能なカスタムコンポーネントの作り方
+
+```ts
+// カスタムコンポーネント
+{
+  name: 'hoge',
+  template: `<input :value="hoge" @input="$emit('input', $event.target.value)">`;
+}
+```
+
+```html
+<!-- テンプレート -->
+<hoge v-model="aaa" />
+```
+
 ## Router
 
 - redirect は replace か

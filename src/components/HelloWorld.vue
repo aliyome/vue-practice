@@ -1,9 +1,15 @@
 <template>
   <div class="hello">
+    <input
+      :value="value"
+      type="text"
+      @input="$emit('input', $event.target.value)"
+    />
+    <button @click="$emit('bbbb', 'fooo')">ぼたん！</button>
     <h1>{{ msg }}</h1>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
+      For a guide and recipes on how to configure / customize this project,
+      <br />check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
         >vue-cli documentation</a
       >.
@@ -140,6 +146,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  @Prop() private value!: string;
 }
 </script>
 

@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HelloWorld
+      v-model="model"
+      @bbbb="onBBBB($event)"
+      msg="Welcome to Your Vue.js App"
+    />
     <button @click="clk">break $router</button>
     <router-view />
   </div>
@@ -17,6 +21,12 @@ export const Home = {
 
   props: ['id', 'p'],
 
+  data() {
+    return {
+      model: '',
+    };
+  },
+
   components: {
     HelloWorld,
   },
@@ -29,6 +39,10 @@ export const Home = {
     clk() {
       // this.$router.push('/', console.log, console.error);
       // console.log(this.$route);
+    },
+
+    onBBBB(ev: any) {
+      console.log(ev);
     },
   },
 };

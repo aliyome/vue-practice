@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <hoge /> -->
     <div id="nav">
       <input v-model.trim="text" />
       <input id="hoge" value="Hoge" type="checkbox" v-model="hoge" />
