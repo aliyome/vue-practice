@@ -57,6 +57,10 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - [イベント名は常にケバブケースを使ったほうが良い](https://jp.vuejs.org/v2/guide/components-custom-events.html#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%90%8D)
 - `<slot> fallback </slot>`: slot に何も指定されなかったら fallback が表示される
 - `<template v-slot:hoge>`　＝　`<template #hoge>`
+- `<keep-alive><component :is="hogeComp" /></keep-alive>` で切り替え前のコンポーネントを inactive 状態で保持でき、再び active にすることもできる。
+- `components: { 'hoge-component': () => import('./hoge-comp') }` で非同期コンポーネント
+  - [ロード状態のハンドリング](https://jp.vuejs.org/v2/guide/components-dynamic-async.html#%E3%83%AD%E3%83%BC%E3%83%89%E7%8A%B6%E6%85%8B%E3%81%AE%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0)
+- `<hoge ref="hogeRef" />`とすると、`this.$ref.hogeRef`でアクセス可能(.focus()するときに便利)
 
 ```html
 <!-- slot側のデータを親コンポーネント側から参照する -->
