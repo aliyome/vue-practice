@@ -128,6 +128,11 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - `<transition mode="out-in>"`を指定することで、要素を切り替えるような場合に消失のトランジション後に生成のトランジションを動かすことができる
 - slot を持つ transition 要素をコンポーネント化すると、トランジションを使い回せる
 
+ディレクティブ
+
+- [要素が DOM に追加されたときに自動で`focus()`する`v-focus`の作り方(オフシャルガイド)](https://jp.vuejs.org/v2/guide/custom-directive.html#%E5%9F%BA%E6%9C%AC)
+- [bind, inserted, update, componentUpdated, unbind](https://jp.vuejs.org/v2/guide/custom-directive.html#%E3%83%95%E3%83%83%E3%82%AF%E9%96%A2%E6%95%B0)
+
 ## Router
 
 - redirect は replace か
