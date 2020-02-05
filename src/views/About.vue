@@ -6,7 +6,7 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
-  beforeRouteEnter: (route, redirect, next) => {
+  beforeRouteEnter(route, redirect, next) {
     next();
   },
 });

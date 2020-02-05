@@ -27,7 +27,7 @@ export const Home = {
 
   methods: {
     clk() {
-      this.$router.push('/', console.log, console.error);
+      // this.$router.push('/', console.log, console.error);
       // console.log(this.$route);
     },
   },

@@ -3,6 +3,10 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
+      <div @click.passive="clicked('div')">
+        foo
+        <a href="http://example.com" @click.prevent="clicked('a')">hoge</a>
+      </div>
     </div>
     <router-view />
     <!-- <transition>
@@ -39,6 +43,12 @@ export default {
   beforeRouteUpdate(to: any, from: any, next: any) {
     console.warn(to, from, next);
     next();
+  },
+
+  methods: {
+    clicked(ev: string) {
+      console.log(ev);
+    },
   },
   // watch: {
   //   $route(to: any, from: any) {

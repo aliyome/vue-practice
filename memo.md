@@ -7,6 +7,7 @@
 - [ ] HelloWorld コンポーネントの @Prop() msg!は指定されないと undefined になるのでクソでは？
 - [ ] shallowMount とは
 - [ ] Vuex を雑に使ってみる
+- [ ] Vue を使ったフォームの作り方(v-model だと不安)
 
 ## 覚書
 
@@ -22,7 +23,40 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 
 ## コンポーネント
 
+- [ ] トランジション
+- [ ] `v-for` トランジション は自動的に使えるらしい
+- [ ] `v-once` 要素の子要素はリアクティブ？
+- [ ] `is`ディレクティブとは何か
+
 - `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
+- コンポーネントのインスタンスが生成されたタイミングで data に存在していたプロパティのみリアクティブ
+  - `Vue#set`を使うことで増やせる
+- **[インスタンスプロパティまたはコールバックでアロー関数 を使用しないでください。](https://jp.vuejs.org/v2/guide/instance.html#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%83%95%E3%83%83%E3%82%AF)**
+- [ライフサイクルダイアグラム](https://jp.vuejs.org/v2/guide/instance.html#%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%83%80%E3%82%A4%E3%82%A2%E3%82%B0%E3%83%A9%E3%83%A0)
+- `<a v-bind:[hogeName]="value">` 動的引数も使える
+- `@click.prevent="onClickHoge"` preventDefault を呼ぶ**修飾子**
+- `@keyup.page-down="onKeyPageDown"` 特定のキーが入力された時のみ購読する**キー修飾子**
+- `@keyup.meta.a="onKeyMetaA"` Win + A キーが入力された時のみ **システムキー修飾子**
+- `@keyup.meta.a.exact="onKeyMetaAExact"` Win + A キーのみが入力されたとき
+- `@click.left="onLeftClick"` 左クリックが入力されたとき
+- computed は**リアクティブな依存関係に基づきキャッシュされる**
+  - computed: {now: () => Date.now(); } // 一度キャッシュされた更新されない
+  - computed: {plus10: () => this.val + 10; } // val が更新される度に更新される
+- `:style`でベンダープレフィックスが必要なプロパティには自動的に付加される
+- 再利用されたくない要素には`key`属性を割り当てる // `<input key="username">`など
+- 配列を別の配列で置き換えても、リストの DOM が全て再描画されることはなく、効率的に部分描画される
+- **配列をインデックス指定で変更してもリアクティブにならない**
+  - `Array#splice`で置換するか、`Vue#set(items, index, value)`で置換する
+
+覚書
+
+- よく使うディレクティブ
+  - v-for(& :key), v-if, v-once, v-html//XSS 注意
+- リアクティブな in-place な配列操作(Vue がラップしている)
+  - push(), pop(), shift(), unshift(), splice(), sort(), reverse()
+- `stopPropagation` 親にイベントが伝搬しない
+- `preventDefault` a タグのクリックや、form の submit イベントでページ遷移したりするのを防ぐ
+- `addEventListener`の`passive`オプションは、イベントのバブリングを待たずに`preventDefault`であってもイベントが即発火するようになる。低スペ（モバイル等）環境の`scroll`イベントがなかなか発火されない場合に用いると、操作性が向上し、ユーザー体験がよくなる
 
 ## Router
 
