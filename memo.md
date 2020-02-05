@@ -47,6 +47,10 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - 配列を別の配列で置き換えても、リストの DOM が全て再描画されることはなく、効率的に部分描画される
 - **配列をインデックス指定で変更してもリアクティブにならない**
   - `Array#splice`で置換するか、`Vue#set(items, index, value)`で置換する
+- checkbox の`v-model`にバインドされた変数が配列の場合は、checkbox の value の値の配列になる
+- `<input v-model.lazy="val">`: 入力後にフォーカスが外れたタイミングでモデルに反映
+- `<input v-model.number="num">`: モデルに反映する直前に parseFloat() される
+- `<input v-model.trim="text">`: モデルに反映する直前に trim() される
 
 覚書
 
@@ -57,6 +61,17 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - `stopPropagation` 親にイベントが伝搬しない
 - `preventDefault` a タグのクリックや、form の submit イベントでページ遷移したりするのを防ぐ
 - `addEventListener`の`passive`オプションは、イベントのバブリングを待たずに`preventDefault`であってもイベントが即発火するようになる。低スペ（モバイル等）環境の`scroll`イベントがなかなか発火されない場合に用いると、操作性が向上し、ユーザー体験がよくなる
+
+```html
+<!-- 選択リストの頻出パターンっぽい -->
+<!-- iOSでは、初期値未設定の場合、選択できなくなるため？disableな値を初期値として設定したほうが良い -->
+<select v-model="selected">
+  <option disabled value="">Please select one</option>
+  <option>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+```
 
 ## Router
 
