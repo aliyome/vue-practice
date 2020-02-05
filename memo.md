@@ -26,7 +26,6 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - [ ] トランジション
 - [ ] `v-for` トランジション は自動的に使えるらしい
 - [ ] `v-once` 要素の子要素はリアクティブ？
-- [ ] `is`ディレクティブとは何か
 
 - `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
 - コンポーネントのインスタンスが生成されたタイミングで data に存在していたプロパティのみリアクティブ
@@ -55,7 +54,7 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 覚書
 
 - よく使うディレクティブ
-  - v-for(& :key), v-if, v-once, v-html//XSS 注意
+  - v-for(& :key), v-if, v-once, v-html//XSS 注意, :is
 - リアクティブな in-place な配列操作(Vue がラップしている)
   - push(), pop(), shift(), unshift(), splice(), sort(), reverse()
 - `stopPropagation` 親にイベントが伝搬しない

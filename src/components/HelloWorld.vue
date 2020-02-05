@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <slot />
     <input
       :value="value"
       type="text"

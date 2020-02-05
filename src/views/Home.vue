@@ -5,7 +5,9 @@
       v-model="model"
       @bbbb="onBBBB($event)"
       msg="Welcome to Your Vue.js App"
-    />
+    >
+      <template v-slot:default>hogeeeeeeee</template>
+    </HelloWorld>
     <button @click="clk">break $router</button>
     <router-view />
   </div>
