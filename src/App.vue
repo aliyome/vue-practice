@@ -7,6 +7,9 @@
       </div>
     </transition>
 
+    <div>{{ num }} - {{ numDisp }} - {{ animatedNumber }}</div>
+    <input v-model.number="num" step="20" />
+
     <button @click="list.splice(3, 1, 10)">splice(3, 1, 10)</button>
     <button @click="list.splice(3, 0, list.length + 1)">
       splice(3, len, len + 1)
@@ -100,6 +103,8 @@
 </style>
 
 <script lang="ts">
+declare const gsap: any;
+
 export default {
   data() {
     return {
@@ -109,12 +114,20 @@ export default {
       text: '',
       show: true,
       list: [1, 2, 3, 4, 5],
+      num: 0,
+      numDisp: 0,
     };
   },
 
   beforeRouteUpdate(to: any, from: any, next: any) {
     console.warn(to, from, next);
     next();
+  },
+
+  computed: {
+    animatedNumber() {
+      return this.$data.numDisp.toFixed(0);
+    },
   },
 
   methods: {
@@ -127,5 +140,13 @@ export default {
   //     console.log(to, from);
   //   },
   // },
+
+  watch: {
+    num(newValue) {
+      console.log(this.numDisp, newValue);
+      gsap.to(this.$data, { duration: 1, numDisp: newValue });
+      // this.numDisp = gsap.to(this.$data, { duration: 1, x: newValue });
+    },
+  },
 };
 </script>
