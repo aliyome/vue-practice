@@ -25,7 +25,6 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 
 - [ ] `v-once` 要素の子要素はリアクティブ？
 - [ ] `vue-property-decorator`で型のバリデーションはどうやる？
-- [ ] 関数型コンポーネントとは？
 
 - `<style scoped></style>` とすると、コンポーネント内のみ有効なスタイルとなる
 - コンポーネントのインスタンスが生成されたタイミングで data に存在していたプロパティのみリアクティブ
@@ -156,6 +155,26 @@ prettier の html フォーマッタが邪魔なときに以下のワークス�
 - [ルートベースの動的トランジション](https://router.vuejs.org/ja/guide/advanced/transitions.html#%E3%83%AB%E3%83%BC%E3%83%88%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E5%8B%95%E7%9A%84%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3)
 - `Component#beforeRouteEnter(route, redirect, next)`でナビゲーション前にデータ取得する
 - `scrollBehavior(to, from, savedPosition) { if (savedPosition) { return savedPosition; }}`
+
+## Vuex
+
+- `...mapState(['stateProp1', 'stateProp2', ])`が便利
+- `...mapGetters(['getter1', 'getter2', ])`が便利
+- `...mapMutations(['increment', 'decrement', ])`が便利
+- `...mapActions(['increment', 'decrement', ])`が便利
+  - 別名にする場合は`...mapActions({add: 'increment'})`
+- `getters: { g1: (state, getters) => state.hoge }` 第二引数 getters 経由で他の getter を参照可能
+- `$store.commit('increment', {type: 'increment', amount: 10})`は下と同じ
+  - `$store.commit({type: 'increment', amount: 10})`
+- 開発ツールに正しく表示するには、ミューテーションは同期的でなければならない(関数前後を記録するため)
+- `actions: { async add({dispatch, commit}) { dispatch('sub') ...... } }` 他のアクションを dispatch できる
+- module に分割する場合は、`namespaced: true`しないと、getter や mutations 等が混ざってクソ使い辛いので、`namespaced: true`はほぼ必須
+- module の getter や actions からは`rootGetter`や`rootState`が参照可能
+- `...mapActions(['moduleA/moduleB/increment', 'moduleB/decrement', ])`のようにネストしたモジュールも便利に利用できる
+- `store.registerModule(['nested', 'moduleA'], moduleA)`で動的にモジュールを登録可能
+- `const plugin = store => store.subscribe((mutation, state) => {})` プラグインはたったこれだけ。mutation 後に毎回呼ばれる
+- `strict: true` **開発時のみ必須** Vuex が mutation の外部で変更されたらエラーが投げられる
+  - **本番時には必ず strict: false にすること** -> deep check するので重い
 
 ## おやっと思ったこと
 

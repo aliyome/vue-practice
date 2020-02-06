@@ -1,14 +1,23 @@
 <template>
   <div id="app">
+    {{ count }} + 1 = {{ $store.getters.countPlus1 }}
+    <button @click="$store.dispatch('increment')">increment</button>
+
+    <input
+      type="text"
+      :value="count"
+      @input="setCount({ count: $event.target.value })"
+    />
+
+    <input type="text" v-model="countModel" />
+
     <button @click="show = !show">toggle</button>
     <transition name="hoge">
-      <div v-if="show" style="border: 1px solid black;">
-        TOGGLE
-      </div>
+      <div v-if="show" style="border: 1px solid black;">TOGGLE</div>
     </transition>
 
-    <div>{{ num }} - {{ numDisp }} - {{ animatedNumber }}</div>
-    <input v-model.number="num" step="20" />
+    <!-- <div>{{ num }} - {{ numDisp }} - {{ animatedNumber }}</div>
+    <input v-model.number="num" step="20" />-->
 
     <button @click="list.splice(3, 1, 10)">splice(3, 1, 10)</button>
     <button @click="list.splice(3, 0, list.length + 1)">
@@ -103,6 +112,7 @@
 </style>
 
 <script lang="ts">
+import { mapState, Store, mapMutations } from 'vuex';
 declare const gsap: any;
 
 export default {
@@ -124,29 +134,47 @@ export default {
     next();
   },
 
-  // computed: {
-  //   animatedNumber: function() {
-  //     return this.$data.numDisp.toFixed(0);
-  //   },
-  // },
+  computed: {
+    ...mapState(['count']),
+
+    countModel: {
+      get(): any {
+        //@ts-ignore
+        return this.count;
+      },
+      set(value: any) {
+        //@ts-ignore
+        this.setCount({ count: value });
+        // this.$store.commit('setCount', { count: value });
+      },
+    },
+  },
 
   methods: {
+    ...mapMutations(['setCount']),
     clicked(ev: string) {
       console.log(ev);
     },
   },
-  // watch: {
-  //   $route(to: any, from: any) {
-  //     console.log(to, from);
-  //   },
-  // },
-
-  // watch: {
-  //   num(newValue: any) {
-  //     console.log(this.numDisp, newValue);
-  //     gsap.to(this.$data, { duration: 1, numDisp: newValue });
-  //     // this.numDisp = gsap.to(this.$data, { duration: 1, x: newValue });
-  //   },
-  // },
 };
+
+// computed: {
+//     //   animatedNumber: function() {
+//     //     return this.$data.numDisp.toFixed(0);
+//     //   },
+// }
+
+// watch: {
+//   $route(to: any, from: any) {
+//     console.log(to, from);
+//   },
+// },
+
+// watch: {
+//   num(newValue: any) {
+//     console.log(this.numDisp, newValue);
+//     gsap.to(this.$data, { duration: 1, numDisp: newValue });
+//     // this.numDisp = gsap.to(this.$data, { duration: 1, x: newValue });
+//   },
+// },
 </script>
