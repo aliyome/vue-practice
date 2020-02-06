@@ -2,6 +2,7 @@
   <div class="hello">
     <slot :bar="bar">{{ bar }}</slot>
     <input
+      data-test="hello-world-input"
       :value="value"
       type="text"
       @input="$emit('input', $event.target.value)"

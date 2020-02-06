@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     {{ count }} + 1 = {{ $store.getters.countPlus1 }}
-    <button @click="$store.dispatch('increment')">increment</button>
+    <span data-test="count">{{ count }}</span>
+    <button @click="$store.dispatch('increment')" data-test="incr-button">
+      increment
+    </button>
 
     <input
       type="text"
