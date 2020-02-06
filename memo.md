@@ -1,15 +1,5 @@
 # Memo
 
-## TODO
-
-- [ ] `vue-property-decorator`とは
-  - [ ] Home コンポーネントに型をもたせたい
-- [ ] HelloWorld コンポーネントの @Prop() msg!は指定されないと undefined になるのでクソでは？
-- [ ] @vue/test-utils を使ったテストとは
-- [ ] shallowMount とは
-- [ ] `v-once` 要素の子要素はリアクティブ？
-- [ ] `vue-property-decorator`で props の型のバリデーションはどうやる？
-
 ## 覚書
 
 prettier の html フォーマッタが邪魔なときに以下のワークスペース設定を行う
@@ -191,6 +181,18 @@ import { RouterLinkStub } from '@vue/test-utils';
 shallowMount(Comp, { stubs: { RouterLink: RouterLinkStub } });
 ```
 
+## TypeScript
+
+vuejs 公式の vue-class-component に@Component デコレータが用意されている
+
+- @Component の引数に propsData 等を指定可能
+- public なクラス変数が、`$data`扱い
+- get プロパティが、`computed`扱い
+
+kaorun343/vue-property-decorator で追加のデコレータを利用可能
+
+- @Prop([String, Boolean]) readonly hoge: string | boolean; とか
+
 ## おやっと思ったこと
 
 - マウントされるエレメントは、コンポーネントのテンプレートで上書きされる
@@ -200,7 +202,6 @@ shallowMount(Comp, { stubs: { RouterLink: RouterLinkStub } });
 
 - `vue-cli-service serve`で何が起きるのか？
   - public/index.html に main.ts が埋め込まれるっぽい？
-- `Vue#$mount`など、`$hoge`の`$`の意味は何？
 
 ```ts
 // main.ts

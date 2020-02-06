@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    {{ hoge }} / {{ decorateHoge }}
     <slot :bar="bar">{{ bar }}</slot>
     <input
       data-test="hello-world-input"
@@ -148,17 +149,24 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
+  hoge = 'unko';
+  bar = 'bbbbbbbbb';
+
   @Prop() private msg!: string;
   @Prop() private value!: string;
   @Prop() private ddd!: { a: number; b: number };
   @Prop() private num!: number;
 
-  data() {
-    return {
-      hoge: this.ddd,
-      bar: 'barrrrrrrrrr',
-    };
+  get decorateHoge() {
+    return `†††${this.hoge}†††`;
   }
+
+  // data() {
+  //   return {
+  //     hoge: this.ddd,
+  //     bar: 'barrrrrrrrrr',
+  //   };
+  // }
 }
 </script>
 
